@@ -105,8 +105,10 @@
 #endif
 #endif // !_XM_ARM_NEON_INTRINSICS_ && !_XM_SSE_INTRINSICS_ && !_XM_NO_INTRINSICS_
 
-#if !defined(_XM_NO_XMVECTOR_OVERLOADS_) && (defined(__clang__) || defined(__GNUC__))
-#define _XM_NO_XMVECTOR_OVERLOADS_
+#if !defined ( PLATFORM_APPLE )
+#	if !defined(_XM_NO_XMVECTOR_OVERLOADS_) && (defined(__clang__) || defined(__GNUC__))
+#		define _XM_NO_XMVECTOR_OVERLOADS_
+#	endif
 #endif
 
 #ifdef _MSC_VER
