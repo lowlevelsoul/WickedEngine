@@ -1,0 +1,5 @@
+
+#include "wickedengine_base.xcconfig"
+
+SDL_ROOT		= $(WE_ROOT)/WickedEngine/SDL
+SDL_INCLUDES	= $(WE_ROOT)/WickedEngine/SDL/include

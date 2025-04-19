@@ -5,8 +5,10 @@
 #include <memory>
 #include <string>
 
-#ifdef SDL2
-#include <SDL2/SDL.h>
+#ifdef SDL3
+#	include <SDL3/SDL.h>
+#elif defined( SDL2 )
+#	include <SDL2/SDL.h>
 #endif
 
 namespace wi::audio

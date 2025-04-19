@@ -35,12 +35,16 @@ typedef void* HMODULE;
 typedef void* HMODULE;
 #endif // _WIN32
 
-#ifdef SDL2
-#include <SDL2/SDL.h>
-#include <SDL_vulkan.h>
-#include "sdl2.h"
+#if SDL3
+#	define SDL2 1
+#	include <SDL3/SDL.h>
+#	include <SDL3/SDL_vulkan.h>
+#	include <SDL3/SDL.h>
+#elif SDL2
+#	include <SDL2/SDL.h>
+#	include <SDL_vulkan.h>
+#	include "sdl2.h"
 #endif
-
 
 namespace wi::platform
 {
@@ -60,7 +64,11 @@ namespace wi::platform
 #ifdef _WIN32
 		PostQuitMessage(0);
 #endif // _WIN32
-#ifdef SDL2
+#if SDL3
+		SDL_Event quit_event;
+		quit_event.type = SDL_EVENT_QUIT;
+		SDL_PushEvent(&quit_event);
+#elif SDL2
 		SDL_Event quit_event;
 		quit_event.type = SDL_QUIT;
 		SDL_PushEvent(&quit_event);
@@ -90,15 +98,15 @@ namespace wi::platform
 		dest->height = int(rect.bottom - rect.top);
 #endif // PLATFORM_WINDOWS_DESKTOP || PLATFORM_XBOX
 		
-#ifdef PLATFORM_MACOS
-		dest->dpi = 96.0f;
-#endif
-
-#ifdef PLATFORM_LINUX
+#if defined(PLATFORM_LINUX) || defined(PLATFORM_MACOS)
 		int window_width, window_height;
 		SDL_GetWindowSize(window, &window_width, &window_height);
+#if SDL3
+		SDL_GetWindowSizeInPixels( window, &dest->width, &dest->height );
+#else
 		SDL_Vulkan_GetDrawableSize(window, &dest->width, &dest->height);
+#endif
 		dest->dpi = ((float)dest->width / (float)window_width) * 96.f;
-#endif // PLATFORM_LINUX
+#endif // PLATFORM_LINUX || PLATFORM_APPLE
 	}
 }
