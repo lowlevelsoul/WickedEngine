@@ -1,0 +1,19 @@
+
+#include "wickedengine_base.xcconfig"
+
+ALWAYS_SEARCH_USER_PATHS        = YES
+USER_HEADER_SEARCH_PATHS        = $(PROJECT_DIR) $(WE_INCLUDES)
+HEADER_SEARCH_PATHS             = $(PROJECT_DIR) $(WE_INCLUDES)
+
+CONFIGURATION_BUILD_DIR         = $(WE_BUILD_DIR_OUT)
+CONFIGURATION_TEMP_DIR          = $(WE_BUILD_DIR_INT)
+
+USE_HEADERMAP                   = NO
+
+GCC_PREPROCESSOR_DEFINITIONS    = $(inherited) PLATFORM_APPLE=1 __EMULATE_UUID _XM_NO_INTRINSICS_ BUILD_INTRINSICS_LEVEL=0
+//GCC_PREFIX_HEADER               = XenoBreed.pch
+//GCC_PRECOMPILE_PREFIX_HEADER    = YES
+
+//APP_FRAMEWORKS                  = -framework foundation -framework metal -framework cocoa -framework MetalKit -framework IOKit -framework QuartzCore
+//OTHER_LDFLAGS                   = $(inherited) $(ASSIMP_LINK) $(APP_FRAMEWORKS) -L$(XE_BUILD_DIR_OUT) -lfarmhash-macos -lz -ltlsf-macos -lfarmhash-macos -lstb-macos -lgmscript-macos -ljoltphysics-macos
+
