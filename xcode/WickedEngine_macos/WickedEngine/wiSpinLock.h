@@ -1,7 +1,10 @@
 #pragma once
 #include <atomic>
 #include <thread>
-#include <emmintrin.h> // _mm_pause()
+
+#if !PLATFORM_APPLE
+#	include <emmintrin.h> // _mm_pause()
+#endif
 
 namespace wi
 {
@@ -17,7 +20,12 @@ namespace wi
 			{
 				if (spin < 10)
 				{
+#if PLATFORM_APPLE
+					// (JS) Could not find the intrinsic for this.
+					asm volatile("yield");
+#else
 					_mm_pause(); // SMT thread swap can occur here
+#endif
 				}
 				else
 				{
