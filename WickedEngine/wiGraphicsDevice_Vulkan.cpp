@@ -18,9 +18,13 @@
 #define VMA_DYNAMIC_VULKAN_FUNCTIONS 1
 #include "Utility/vk_mem_alloc.h"
 
-#ifdef SDL2
-#include <SDL2/SDL_vulkan.h>
-#include "sdl2.h"
+#if defined( SDL3 )
+#	include <SDL3/SDL.h>
+#	include <SDL3/SDL_vulkan.h>
+#	include "sdl2.h"
+#elif defined( SDL2 )
+#	include <SDL2/SDL_vulkan.h>
+#	include "sdl2.h"
 #endif
 
 #include <string>
@@ -2402,6 +2406,12 @@ using namespace vulkan_internal;
 #elif SDL2
 		{
 			uint32_t extensionCount;
+#ifdef SDL3
+			const char * const * extensionNames = SDL_Vulkan_GetInstanceExtensions( &extensionCount );
+			for( uint32_t extIndex = 0; extIndex != extensionCount; ++extIndex ) {
+				instanceExtensions.push_back( extensionNames[ extIndex ] );
+			}			
+#else
 			SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, nullptr);
 			wi::vector<const char *> extensionNames_sdl(extensionCount);
 			SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, extensionNames_sdl.data());
@@ -2410,6 +2420,8 @@ using namespace vulkan_internal;
 			{
 				instanceExtensions.push_back(x);
 			}
+#endif
+			
 		}
 #endif // _WIN32
 		
@@ -3741,6 +3753,12 @@ using namespace vulkan_internal;
 			createInfo.hinstance = GetModuleHandle(nullptr);
 
 			vulkan_check(vkCreateWin32SurfaceKHR(instance, &createInfo, nullptr, &internal_state->surface));
+#elif SDL3
+			bool createSurfOk = SDL_Vulkan_CreateSurface( window, instance, nullptr, &internal_state->surface );
+			if ( createSurfOk == false )
+			{
+				throw sdl2::SDLError("Error creating a vulkan surface");
+			}
 #elif SDL2
 			if (!SDL_Vulkan_CreateSurface(window, instance, &internal_state->surface))
 			{

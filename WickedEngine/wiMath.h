@@ -9,11 +9,13 @@
 // In this case, DirectXMath is coming from Windows SDK.
 //	It is better to use this on Windows as some Windows libraries could depend on the same
 //	DirectXMath headers
-#define _XM_F16C_INTRINSICS_
-#define _XM_FMA3_INTRINSICS_
-#include <DirectXMath.h>
-#include <DirectXPackedVector.h>
-#include <DirectXCollision.h>
+#	if !defined( PLATFORM_APPLE )
+#		define _XM_F16C_INTRINSICS_
+#		define _XM_FMA3_INTRINSICS_
+#	endif
+#include <Utility/DirectXMath.h>
+#include <Utility/DirectXPackedVector.h>
+#include <Utility/DirectXCollision.h>
 #else
 // In this case, DirectXMath is coming from supplied source code
 //	On platforms that don't have Windows SDK, the source code for DirectXMath is provided
@@ -92,7 +94,8 @@ namespace wi::math
 	{
 		XMVECTOR vector1 = XMLoadFloat2(&v1);
 		XMVECTOR vector2 = XMLoadFloat2(&v2);
-		return XMVectorGetX(XMVector2Length(vector2 - vector1));
+		XMVECTOR delta = XMVectorSubtract( vector2, vector1 );
+		return XMVectorGetX(XMVector2Length( delta ) );
 	}
 	inline float Distance(const XMFLOAT3& v1, const XMFLOAT3& v2)
 	{
@@ -104,7 +107,8 @@ namespace wi::math
 	{
 		XMVECTOR vector1 = XMLoadFloat2(&v1);
 		XMVECTOR vector2 = XMLoadFloat2(&v2);
-		return XMVectorGetX(XMVector2LengthSq(vector2 - vector1));
+		XMVECTOR delta = XMVectorSubtract( vector2, vector1 );
+		return XMVectorGetX(XMVector2LengthSq( delta ) );
 	}
 	inline float DistanceSquared(const XMFLOAT3& v1, const XMFLOAT3& v2)
 	{
@@ -116,7 +120,8 @@ namespace wi::math
 	{
 		XMVECTOR vector1 = XMLoadFloat2(&v1);
 		XMVECTOR vector2 = XMLoadFloat2(&v2);
-		return XMVectorGetX(XMVector2LengthEst(vector2 - vector1));
+		XMVECTOR delta = XMVectorSubtract( vector2, vector1 );
+		return XMVectorGetX(XMVector2LengthEst( delta ) );
 	}
 	inline float DistanceEstimated(const XMFLOAT3& v1, const XMFLOAT3& v2)
 	{

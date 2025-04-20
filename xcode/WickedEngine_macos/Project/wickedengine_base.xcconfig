@@ -1,0 +1,9 @@
+
+WI_ROOT             = $(PROJECT_DIR)/../..
+WI_SOURCE           = $(WI_ROOT)/WickedEngine
+WI_INCLUDES			= $(WI_SOURCE) $(WI_SOURCE)/LUA $(WI_SOURCE)/JOLT $(WI_SOURCE)/Utility $(WI_SOURCE)/Utility/FAudio/include $(WI_SOURCE)/Utility/include $(WI_SOURCE)/WickedEngine/Utility/MeshOptimizer
+
+WI_BUILD_DIR        = $(WI_ROOT)/build/$(PLATFORM_NAME)/$(CONFIGURATION)
+WI_BUILD_DIR_OUT    = $(WI_BUILD_DIR)/bin/
+WI_BUILD_DIR_INT    = $(WI_BUILD_DIR)/obj/$(PROJECT_NAME)/$(TARGET_NAME)
+

@@ -21,6 +21,12 @@
 #define wiGetProcAddress(handle,name) GetProcAddress(handle, name)
 #elif defined(__SCE__)
 #define PLATFORM_PS5
+#elif PLATFORM_APPLE
+#	define PLATFORM_MACOS 1
+#	include <dlfcn.h>
+#	define wiLoadLibrary(name) dlopen(name, RTLD_LAZY)
+#	define wiGetProcAddress(handle,name) dlsym(handle, name)
+typedef void* HMODULE;
 #else
 #define PLATFORM_LINUX
 #include <dlfcn.h>
@@ -29,12 +35,22 @@
 typedef void* HMODULE;
 #endif // _WIN32
 
-#ifdef SDL2
-#include <SDL2/SDL.h>
-#include <SDL_vulkan.h>
-#include "sdl2.h"
+#if SDL3
+#	define SDL2 1
+#	include <SDL3/SDL.h>
+#	include <SDL3/SDL_vulkan.h>
+#	include <SDL3/SDL.h>
+#elif SDL2
+#	include <SDL2/SDL.h>
+#	include <SDL_vulkan.h>
+#	include "sdl2.h"
 #endif
 
+//template<typename T>
+inline constexpr uint64_t AlignTo(uint64_t value, uint64_t alignment)
+{
+	return ((value + alignment - uint64_t(1)) / alignment) * alignment;
+}
 
 namespace wi::platform
 {
@@ -54,7 +70,11 @@ namespace wi::platform
 #ifdef _WIN32
 		PostQuitMessage(0);
 #endif // _WIN32
-#ifdef SDL2
+#if SDL3
+		SDL_Event quit_event;
+		quit_event.type = SDL_EVENT_QUIT;
+		SDL_PushEvent(&quit_event);
+#elif SDL2
 		SDL_Event quit_event;
 		quit_event.type = SDL_QUIT;
 		SDL_PushEvent(&quit_event);
@@ -83,12 +103,16 @@ namespace wi::platform
 		dest->width = int(rect.right - rect.left);
 		dest->height = int(rect.bottom - rect.top);
 #endif // PLATFORM_WINDOWS_DESKTOP || PLATFORM_XBOX
-
-#ifdef PLATFORM_LINUX
+		
+#if defined(PLATFORM_LINUX) || defined(PLATFORM_MACOS)
 		int window_width, window_height;
 		SDL_GetWindowSize(window, &window_width, &window_height);
+#if SDL3
+		SDL_GetWindowSizeInPixels( window, &dest->width, &dest->height );
+#else
 		SDL_Vulkan_GetDrawableSize(window, &dest->width, &dest->height);
+#endif
 		dest->dpi = ((float)dest->width / (float)window_width) * 96.f;
-#endif // PLATFORM_LINUX
+#endif // PLATFORM_LINUX || PLATFORM_APPLE
 	}
 }

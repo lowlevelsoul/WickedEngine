@@ -1,0 +1,20 @@
+
+#include "wickedengine_base.xcconfig"
+#include "wickedengine_sdl.xcconfig"
+
+ALWAYS_SEARCH_USER_PATHS        = YES
+USER_HEADER_SEARCH_PATHS        = $(PROJECT_DIR) $(WI_INCLUDES) $(SDL_INCLUDES)
+HEADER_SEARCH_PATHS             = $(PROJECT_DIR) $(WI_INCLUDES) $(SDL_INCLUDES)
+
+CONFIGURATION_BUILD_DIR         = $(WI_BUILD_DIR_OUT)
+CONFIGURATION_TEMP_DIR          = $(WI_BUILD_DIR_INT)
+
+USE_HEADERMAP                   = NO
+
+GCC_PREPROCESSOR_DEFINITIONS    = $(inherited) PLATFORM_APPLE=1 WICKEDENGINE_BUILD_VULKAN __EMULATE_UUID BUILD_INTRINSICS_LEVEL=0 SDL3=1 JPH_DEBUG_RENDERER=1
+//GCC_PREFIX_HEADER               = XenoBreed.pch
+//GCC_PRECOMPILE_PREFIX_HEADER    = YES
+
+//APP_FRAMEWORKS                  = -framework foundation -framework metal -framework cocoa -framework MetalKit -framework IOKit -framework QuartzCore
+//OTHER_LDFLAGS                   = $(inherited) $(ASSIMP_LINK) $(APP_FRAMEWORKS) -L$(XE_BUILD_DIR_OUT) -lfarmhash-macos -lz -ltlsf-macos -lfarmhash-macos -lstb-macos -lgmscript-macos -ljoltphysics-macos
+

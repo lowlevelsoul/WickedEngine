@@ -14,13 +14,28 @@
 #include <atomic>
 #include <thread>
 
-#ifdef SDL2
-#include <SDL2/SDL.h>
+#ifdef SDL3
+#	include <SDL3/SDL.h>
+#elif SDL2
+#	include <SDL2/SDL.h>
 #endif // SDL2
 
 #ifdef PLATFORM_PS5
 #include "wiInput_PS5.h"
 #endif // PLATFORM_PS5
+
+
+#ifdef SDL3
+#	define SDL_SYSTEM_CURSOR_ARROW SDL_SYSTEM_CURSOR_DEFAULT
+#	define SDL_SYSTEM_CURSOR_IBEAM SDL_SYSTEM_CURSOR_TEXT
+#	define SDL_SYSTEM_CURSOR_SIZEALL SDL_SYSTEM_CURSOR_MOVE
+#	define SDL_SYSTEM_CURSOR_SIZENS SDL_SYSTEM_CURSOR_NS_RESIZE
+#	define SDL_SYSTEM_CURSOR_SIZEWE SDL_SYSTEM_CURSOR_EW_RESIZE
+#	define SDL_SYSTEM_CURSOR_SIZENESW SDL_SYSTEM_CURSOR_NESW_RESIZE
+#	define SDL_SYSTEM_CURSOR_SIZENWSE SDL_SYSTEM_CURSOR_NWSE_RESIZE
+#	define SDL_SYSTEM_CURSOR_HAND SDL_SYSTEM_CURSOR_POINTER
+#	define SDL_SYSTEM_CURSOR_NO SDL_SYSTEM_CURSOR_NOT_ALLOWED
+#endif
 
 namespace wi::input
 {
@@ -733,8 +748,10 @@ namespace wi::input
 		{
 			while (ShowCursor(true) < 0) {};
 		}
+#elif SDL3
+		SDL_SetWindowRelativeMouseMode( window, value ? true : false);
 #elif SDL2
-		SDL_SetRelativeMouseMode(value ? SDL_TRUE : SDL_FALSE);
+		SDL_SetRelativeMouseMode(value ? true : false);
 #endif // _WIN32
 	}
 

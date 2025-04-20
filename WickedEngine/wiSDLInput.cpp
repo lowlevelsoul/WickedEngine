@@ -1,10 +1,76 @@
 #include "wiSDLInput.h"
 
-#ifdef SDL2
-#include <SDL2/SDL.h>
+#if defined(SDL2) || defined(SDL3)
+#if defined( SDL3 )
+#	include <SDL3/SDL.h>
+#elif defined( SDL2 )
+#	include <SDL2/SDL.h>
+#endif
 
 #include "wiUnorderedMap.h"
 #include "wiBacklog.h"
+
+// (JS) BFH for SDL3. SDL3 has attempted to sanitize the event and gamepad
+// naming conventions. For now, rather than re-writing the entire inout stuff for SDL3, we'll
+// hijack the SDL2 input and hide the different SD3 naming conventions with macros.
+#ifdef SDL3
+#define SDL_GameController SDL_Gamepad
+#define SDL_GameControllerAddMappingsFromFile SDL_AddGamepadMappingsFromFile
+#define SDL_GameControllerOpen SDL_OpenGamepad
+#define SDL_GameControllerClose SDL_CloseGamepad
+#define SDL_GameControllerGetJoystick SDL_GetGamepadJoystick
+#define SDL_JoystickInstanceID SDL_GetJoystickID
+#define SDL_GameControllerRumble SDL_RumbleGamepad
+#define SDL_GameControllerRumble SDL_RumbleGamepad
+
+#define SDL_KEYDOWN SDL_EVENT_KEY_DOWN
+#define SDL_KEYUP SDL_EVENT_KEY_UP
+#define SDL_TEXTEDITING SDL_EVENT_TEXT_EDITING
+#define SDL_TEXTINPUT SDL_EVENT_TEXT_INPUT
+#define SDL_KEYMAPCHANGED SDL_EVENT_KEYMAP_CHANGED
+
+#define SDL_JOYAXISMOTION SDL_EVENT_JOYSTICK_AXIS_MOTION
+#define SDL_JOYBALLMOTION SDL_EVENT_JOYSTICK_BALL_MOTION
+#define SDL_JOYHATMOTION SDL_EVENT_JOYSTICK_HAT_MOTION
+#define SDL_JOYBUTTONDOWN SDL_EVENT_JOYSTICK_BUTTON_DOWN
+#define SDL_JOYBUTTONUP SDL_EVENT_JOYSTICK_BUTTON_UP
+#define SDL_JOYDEVICEADDED SDL_EVENT_JOYSTICK_ADDED
+#define SDL_JOYDEVICEREMOVED SDL_EVENT_JOYSTICK_REMOVED
+#define SDL_CONTROLLERAXISMOTION SDL_EVENT_GAMEPAD_AXIS_MOTION
+#define SDL_CONTROLLER_AXIS_LEFTX SDL_GAMEPAD_AXIS_LEFTX
+#define SDL_CONTROLLER_AXIS_LEFTY SDL_GAMEPAD_AXIS_LEFTY
+#define SDL_CONTROLLER_AXIS_RIGHTY SDL_GAMEPAD_AXIS_RIGHTY
+#define SDL_CONTROLLER_AXIS_RIGHTX SDL_GAMEPAD_AXIS_RIGHTX
+#define SDL_CONTROLLER_AXIS_TRIGGERLEFT SDL_GAMEPAD_AXIS_LEFT_TRIGGER
+#define SDL_CONTROLLER_AXIS_TRIGGERRIGHT SDL_GAMEPAD_AXIS_RIGHT_TRIGGER
+#define SDL_CONTROLLERBUTTONDOWN SDL_EVENT_GAMEPAD_BUTTON_DOWN
+#define SDL_CONTROLLERBUTTONUP SDL_EVENT_GAMEPAD_BUTTON_UP
+#define SDL_CONTROLLERDEVICEADDED SDL_EVENT_GAMEPAD_ADDED
+#define SDL_CONTROLLERDEVICEREMOVED SDL_EVENT_GAMEPAD_REMOVED
+#define SDL_CONTROLLERDEVICEREMAPPED SDL_EVENT_GAMEPAD_REMAPPED
+#define SDL_FINGERDOWN SDL_EVENT_FINGER_DOWN
+#define SDL_FINGERUP SDL_EVENT_FINGER_UP
+#define SDL_FINGERMOTION SDL_EVENT_FINGER_MOTION
+#define SDL_CONTROLLER_BUTTON_DPAD_UP SDL_GAMEPAD_BUTTON_DPAD_UP
+#define SDL_CONTROLLER_BUTTON_DPAD_DOWN SDL_GAMEPAD_BUTTON_DPAD_DOWN
+#define SDL_CONTROLLER_BUTTON_DPAD_LEFT SDL_GAMEPAD_BUTTON_DPAD_LEFT
+#define SDL_CONTROLLER_BUTTON_DPAD_RIGHT SDL_GAMEPAD_BUTTON_DPAD_RIGHT
+#define SDL_CONTROLLER_BUTTON_X SDL_GAMEPAD_BUTTON_WEST
+#define SDL_CONTROLLER_BUTTON_A SDL_GAMEPAD_BUTTON_SOUTH
+#define SDL_CONTROLLER_BUTTON_B SDL_GAMEPAD_BUTTON_EAST
+#define SDL_CONTROLLER_BUTTON_Y SDL_GAMEPAD_BUTTON_NORTH
+#define SDL_CONTROLLER_BUTTON_LEFTSHOULDER SDL_GAMEPAD_BUTTON_LEFT_SHOULDER
+#define SDL_CONTROLLER_BUTTON_RIGHTSHOULDER SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER
+#define SDL_CONTROLLER_BUTTON_LEFTSTICK SDL_GAMEPAD_BUTTON_LEFT_STICK
+#define SDL_CONTROLLER_BUTTON_RIGHTSTICK SDL_GAMEPAD_BUTTON_RIGHT_STICK
+#define SDL_CONTROLLER_BUTTON_BACK SDL_GAMEPAD_BUTTON_BACK
+#define SDL_CONTROLLER_BUTTON_START SDL_GAMEPAD_BUTTON_START
+
+#define SDL_MOUSEMOTION SDL_EVENT_MOUSE_MOTION
+#define SDL_MOUSEBUTTONDOWN SDL_EVENT_MOUSE_BUTTON_DOWN
+#define SDL_MOUSEBUTTONUP SDL_EVENT_MOUSE_BUTTON_UP
+#define SDL_MOUSEWHEEL SDL_EVENT_MOUSE_WHEEL
+#endif
 
 namespace wi::input::sdlinput
 {
@@ -52,7 +118,11 @@ namespace wi::input::sdlinput
                 // Keyboard events
                 case SDL_KEYDOWN:             // Key pressed
                 {
+#ifdef SDL3
+					int converted = to_wicked(event.key.scancode, event.key.key );
+#else
                     int converted = to_wicked(event.key.keysym.scancode, event.key.keysym.sym);
+#endif
                     if (converted >= 0) {
                         keyboard.buttons[converted] = true;
                     }
@@ -60,7 +130,11 @@ namespace wi::input::sdlinput
                 }
                 case SDL_KEYUP:               // Key released
                 {
-                    int converted = to_wicked(event.key.keysym.scancode, event.key.keysym.sym);
+#ifdef SDL3
+					int converted = to_wicked(event.key.scancode, event.key.key );
+#else
+					int converted = to_wicked(event.key.keysym.scancode, event.key.keysym.sym);
+#endif
                     if (converted >= 0) {
                         keyboard.buttons[converted] = false;
                     }
@@ -130,12 +204,26 @@ namespace wi::input::sdlinput
                     // Game controller events
                 case SDL_CONTROLLERAXISMOTION:          // Game controller axis motion
                 {
+#ifdef SDL3
+					auto controller_get = controller_mapped.find(event.gaxis.which );
+#else
                     auto controller_get = controller_mapped.find(event.caxis.which);
+#endif
+
                     if(controller_get != controller_mapped.end()){
+#ifdef SDL3
+						float raw = event.gaxis.value / 32767.0f;
+#else
                         float raw = event.caxis.value / 32767.0f;
+#endif
                         const float deadzone = 0.2;
                         float deadzoned = (raw < -deadzone || raw > deadzone) ? raw : 0;
+#ifdef SDL3
+						switch(event.gaxis.axis){
+#else
                         switch(event.caxis.axis){
+#endif
+ 
                             case SDL_CONTROLLER_AXIS_LEFTX:
                                 controllers[controller_get->second].state.thumbstick_L.x = deadzoned;
                                 break;
@@ -160,17 +248,34 @@ namespace wi::input::sdlinput
                 }
                 case SDL_CONTROLLERBUTTONDOWN:          // Game controller button pressed
                 {
-                    auto find = controller_mapped.find(event.cbutton.which);
+#ifdef SDL3
+                    auto find = controller_mapped.find(event.gbutton.which);
+#else
+					auto find = controller_mapped.find(event.cbutton.which);
+#endif
                     if(find != controller_mapped.end()){
-                        controller_to_wicked(&controllers[find->second].state.buttons, event.cbutton.button, true);
+
+#ifdef SDL3
+						controller_to_wicked(&controllers[find->second].state.buttons, event.gbutton.button, true);
+#else
+						controller_to_wicked(&controllers[find->second].state.buttons, event.cbutton.button, true);
+#endif
                     }
                     break;
                 }
                 case SDL_CONTROLLERBUTTONUP:            // Game controller button released
                 {
-                    auto find = controller_mapped.find(event.cbutton.which);
+#ifdef SDL3
+					auto find = controller_mapped.find(event.gbutton.which);
+#else
+					auto find = controller_mapped.find(event.cbutton.which);
+#endif
                     if(find != controller_mapped.end()){
-                        controller_to_wicked(&controllers[find->second].state.buttons, event.cbutton.button, false);
+#ifdef SDL3
+                        controller_to_wicked(&controllers[find->second].state.buttons, event.gbutton.button, false);
+#else
+						controller_to_wicked(&controllers[find->second].state.buttons, event.cbutton.button, false);
+#endif
                     }
                     break;
                 }
@@ -209,11 +314,13 @@ namespace wi::input::sdlinput
 
 
                     // Gesture events
+#ifndef SDL3
                 case SDL_DOLLARGESTURE:
                 case SDL_DOLLARRECORD:
                 case SDL_MULTIGESTURE:
                     wi::backlog::post("gesture!");
                     break;
+#endif
                 default:
                     break;
             }

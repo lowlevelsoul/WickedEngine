@@ -9,11 +9,6 @@
 
 #include <sstream>
 
-template<typename T>
-static constexpr T AlignTo(T value, T alignment)
-{
-	return ((value + alignment - T(1)) / alignment) * alignment;
-}
 
 #ifdef _WIN32
 

@@ -3,7 +3,11 @@
 
 #pragma once
 
-#include <SDL2/SDL.h>
+#ifdef SDL3
+#	include <SDL3/SDL.h>
+#else
+#	include <SDL2/SDL.h>
+#endif
 #include <memory>
 #include <sstream>
 
@@ -41,7 +45,11 @@ inline void SDL_DestroySDL(SDL_System* init_status)
 using sdlsystem_ptr_t = std::unique_ptr<SDL_System, decltype(&SDL_DestroySDL)>;
 using window_ptr_t = std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)>;
 using renderer_ptr_t = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
+#ifdef SDL3
+using surf_ptr_t = std::unique_ptr<SDL_Surface, decltype(&SDL_DestroySurface)>;
+#else
 using surf_ptr_t = std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)>;
+#endif
 using texture_ptr_t = std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)>;
 
 // Initialize SDL (the returned int* contains the return value from SDL_Init)
@@ -53,21 +61,37 @@ inline sdlsystem_ptr_t make_sdlsystem(Uint32 flags)
 // Create a window (that contains both a SDL_Window and the destructor for SDL_Windows)
 inline window_ptr_t make_window(const char* title, int x, int y, int w, int h, Uint32 flags)
 {
+#ifdef SDL3
+	return make_resource(SDL_CreateWindow, SDL_DestroyWindow, title, w, h, flags);
+#else
     return make_resource(SDL_CreateWindow, SDL_DestroyWindow, title, x, y, w, h, flags);
+#endif
 }
 
 // Create a renderer given a window, containing both the renderer and the destructor
 inline renderer_ptr_t make_renderer(SDL_Window* win, int x, Uint32 flags)
 {
+#ifdef SDL3
+	return make_resource(SDL_CreateRenderer, SDL_DestroyRenderer, win, "???" );
+#else
     return make_resource(SDL_CreateRenderer, SDL_DestroyRenderer, win, x, flags);
+#endif
 }
 
 // Create a surface from a bmp file, containing both the surface and the destructor
+#ifdef SDL3
+inline surf_ptr_t make_bmp(SDL_IOStream* sdlfile)
+{
+	// May throw an exception if sdlfile is nullptr
+	return make_resource(SDL_LoadBMP_IO, SDL_DestroySurface, sdlfile, 1);
+}
+#else
 inline surf_ptr_t make_bmp(SDL_RWops* sdlfile)
 {
     // May throw an exception if sdlfile is nullptr
     return make_resource(SDL_LoadBMP_RW, SDL_FreeSurface, sdlfile, 1);
 }
+#endif
 
 // Create a texture from a renderer and a surface
 inline texture_ptr_t make_texture(SDL_Renderer* ren, SDL_Surface* surf)

@@ -37,6 +37,8 @@ namespace wi::initializer
 		static constexpr const char* platform_string = "PS5";
 #elif defined(PLATFORM_XBOX)
 		static constexpr const char* platform_string = "Xbox";
+#elif defined(PLATFORM_APPLE)
+		static constexpr const char* platform_string = "MacOS";
 #endif // PLATFORM
 
 		wilog("\n[wi::initializer] Initializing Wicked Engine, please wait...\nVersion: %s\nPlatform: %s", wi::version::GetVersionString(), platform_string);

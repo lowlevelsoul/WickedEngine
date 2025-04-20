@@ -18,6 +18,7 @@
 #include "shaders/ShaderInterop_DDGI.h"
 
 #include <sanitizer/asan_interface.h>
+#include <algorithm>
 
 using namespace wi::ecs;
 using namespace wi::enums;
@@ -2953,13 +2954,13 @@ namespace wi::scene
 						}
 					}
 					current_sample *= info.channel_count;
-					current_sample = std::min(current_sample, info.sample_count);
+					current_sample = std::min<uint64_t>(current_sample, info.sample_count);
 
 					float voice = 0;
 					const int sample_count = 64;
 					for (int sam = 0; sam < sample_count; ++sam)
 					{
-						voice = std::max(voice, std::abs((float)info.samples[std::min(current_sample + sam, info.sample_count)] / 32768.0f));
+						voice = std::max<float>(voice, std::abs((float)info.samples[std::min<uint64_t>(current_sample + sam, info.sample_count)] / 32768.0f));
 					}
 					const float strength = 0.4f;
 					if (voice > 0.1f)
