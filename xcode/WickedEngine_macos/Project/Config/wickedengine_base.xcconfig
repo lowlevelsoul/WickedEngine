@@ -1,6 +1,6 @@
 
 WE_ROOT             = $(PROJECT_DIR)/../..
-WE_SOURCE           = $(XB_ROOT)/WickedEngine
+WE_SOURCE           = $(XB_ROOT)/WickedEngine $(XB_ROOT)/WickedEngine/LUA $(XB_ROOT)/WickedEngine/JOLT
 
 WE_BUILD_DIR        = $(WE_ROOT)/build/$(PLATFORM_NAME)/$(CONFIGURATION)
 WE_BUILD_DIR_OUT    = $(WE_BUILD_DIR)/bin/
