@@ -18,9 +18,12 @@
 #define VMA_DYNAMIC_VULKAN_FUNCTIONS 1
 #include "Utility/vk_mem_alloc.h"
 
-#ifdef SDL2
-#include <SDL2/SDL_vulkan.h>
-#include "sdl2.h"
+#if defined( SDL3 )
+#	include <SDL3/SDL_vulkan.h>
+#	include <SDL3/SDL3.h>
+#elif defined( SDL2 )
+#	include <SDL2/SDL_vulkan.h>
+#	include "sdl2.h"
 #endif
 
 #include <string>
