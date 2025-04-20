@@ -3,8 +3,10 @@
 #include "wiInput.h"
 #include "wiVector.h"
 
-#ifdef SDL2
-#include <SDL2/SDL.h>
+#if defined( SDL3 )
+#	include <SDL3/SDL.h>
+#elif defined( SDL2 )
+#	include <SDL2/SDL.h>
 #endif
 
 namespace wi::input::sdlinput

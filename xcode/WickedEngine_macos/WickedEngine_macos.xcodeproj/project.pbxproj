@@ -13,6 +13,77 @@
 		1A129FA42DB3ACF20016BF1D /* wiArguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EEF2DB3A85E0016BF1D /* wiArguments.cpp */; };
 		1A129FA52DB3ACFC0016BF1D /* wiArchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EED2DB3A85E0016BF1D /* wiArchive.cpp */; };
 		1A12A6232DB42AEE0016BF1D /* wiApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EE92DB3A85E0016BF1D /* wiApplication.cpp */; };
+		1A12A6242DB4B3D40016BF1D /* wiAudio_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EF52DB3A85E0016BF1D /* wiAudio_BindLua.cpp */; };
+		1A12A6252DB4B3D40016BF1D /* wiAsync_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EF12DB3A85E0016BF1D /* wiAsync_BindLua.cpp */; };
+		1A12A6262DB4B4400016BF1D /* wiImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F232DB3A85E0016BF1D /* wiImage.cpp */; };
+		1A12A6272DB4B4400016BF1D /* wiPathQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F452DB3A85E0016BF1D /* wiPathQuery.cpp */; };
+		1A12A6282DB4B4400016BF1D /* wiApplication_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EEB2DB3A85E0016BF1D /* wiApplication_BindLua.cpp */; };
+		1A12A6292DB4B4400016BF1D /* wiNetwork_Windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F402DB3A85E0016BF1D /* wiNetwork_Windows.cpp */; };
+		1A12A62A2DB4B4400016BF1D /* wiMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F392DB3A85E0016BF1D /* wiMath.cpp */; };
+		1A12A62B2DB4B4400016BF1D /* wiSpriteAnim_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F7E2DB3A85E0016BF1D /* wiSpriteAnim_BindLua.cpp */; };
+		1A12A62C2DB4B4400016BF1D /* wiNetwork_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F3E2DB3A85E0016BF1D /* wiNetwork_BindLua.cpp */; };
+		1A12A62D2DB4B4400016BF1D /* wiOcean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F432DB3A85E0016BF1D /* wiOcean.cpp */; };
+		1A12A62E2DB4B4400016BF1D /* wiLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F352DB3A85E0016BF1D /* wiLua.cpp */; };
+		1A12A62F2DB4B4400016BF1D /* wiTrailRenderer_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F8D2DB3A85E0016BF1D /* wiTrailRenderer_BindLua.cpp */; };
+		1A12A6302DB4B4400016BF1D /* wiTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F842DB3A85E0016BF1D /* wiTerrain.cpp */; };
+		1A12A6312DB4B4400016BF1D /* wiSpriteFont_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F822DB3A85E0016BF1D /* wiSpriteFont_BindLua.cpp */; };
+		1A12A6322DB4B4400016BF1D /* wiFadeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F0D2DB3A85E0016BF1D /* wiFadeManager.cpp */; };
+		1A12A6332DB4B4400016BF1D /* wiShaderCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F762DB3A85E0016BF1D /* wiShaderCompiler.cpp */; };
+		1A12A6342DB4B4400016BF1D /* wiTextureHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F882DB3A85E0016BF1D /* wiTextureHelper.cpp */; };
+		1A12A6352DB4B4400016BF1D /* wiRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F542DB3A85E0016BF1D /* wiRandom.cpp */; };
+		1A12A6362DB4B4400016BF1D /* wiTrailRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F8B2DB3A85E0016BF1D /* wiTrailRenderer.cpp */; };
+		1A12A6372DB4B4400016BF1D /* wiVoxelGrid_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F982DB3A85E0016BF1D /* wiVoxelGrid_BindLua.cpp */; };
+		1A12A6382DB4B4400016BF1D /* wiScene_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F6E2DB3A85E0016BF1D /* wiScene_BindLua.cpp */; };
+		1A12A6392DB4B4400016BF1D /* wiPrimitive_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F502DB3A85E0016BF1D /* wiPrimitive_BindLua.cpp */; };
+		1A12A63A2DB4B4400016BF1D /* wiLoadingScreen_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F312DB3A85E0016BF1D /* wiLoadingScreen_BindLua.cpp */; };
+		1A12A63B2DB4B4400016BF1D /* wiSDLInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F742DB3A85E0016BF1D /* wiSDLInput.cpp */; };
+		1A12A63C2DB4B4400016BF1D /* wiFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F112DB3A85E0016BF1D /* wiFont.cpp */; };
+		1A12A63D2DB4B4400016BF1D /* wiScene_Serializers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F722DB3A85E0016BF1D /* wiScene_Serializers.cpp */; };
+		1A12A63E2DB4B4400016BF1D /* wiSpriteFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F802DB3A85E0016BF1D /* wiSpriteFont.cpp */; };
+		1A12A63F2DB4B4400016BF1D /* wiSprite_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F7C2DB3A85E0016BF1D /* wiSprite_BindLua.cpp */; };
+		1A12A6402DB4B4400016BF1D /* wiJobSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F2D2DB3A85E0016BF1D /* wiJobSystem.cpp */; };
+		1A12A6412DB4B4400016BF1D /* wiResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F6A2DB3A85E0016BF1D /* wiResourceManager.cpp */; };
+		1A12A6422DB4B4400016BF1D /* wiPathQuery_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F472DB3A85E0016BF1D /* wiPathQuery_BindLua.cpp */; };
+		1A12A6432DB4B4400016BF1D /* wiAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EF32DB3A85E0016BF1D /* wiAudio.cpp */; };
+		1A12A6442DB4B4400016BF1D /* wiGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F1D2DB3A85E0016BF1D /* wiGUI.cpp */; };
+		1A12A6452DB4B4400016BF1D /* wiPhysics_Jolt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F4B2DB3A85E0016BF1D /* wiPhysics_Jolt.cpp */; };
+		1A12A6462DB4B4400016BF1D /* wiMath_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F3B2DB3A85E0016BF1D /* wiMath_BindLua.cpp */; };
+		1A12A6472DB4B4400016BF1D /* wiPrimitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F4E2DB3A85E0016BF1D /* wiPrimitive.cpp */; };
+		1A12A6482DB4B4400016BF1D /* wiRenderPath2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F602DB3A85E0016BF1D /* wiRenderPath2D.cpp */; };
+		1A12A6492DB4B4400016BF1D /* wiLoadingScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F2F2DB3A85E0016BF1D /* wiLoadingScreen.cpp */; };
+		1A12A64A2DB4B4400016BF1D /* wiFFTGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F0F2DB3A85E0016BF1D /* wiFFTGenerator.cpp */; };
+		1A12A64B2DB4B4400016BF1D /* wiLocalization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F332DB3A85E0016BF1D /* wiLocalization.cpp */; };
+		1A12A64C2DB4B4400016BF1D /* wiInitializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F272DB3A85E0016BF1D /* wiInitializer.cpp */; };
+		1A12A64D2DB4B4400016BF1D /* wiGPUBVH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F132DB3A85E0016BF1D /* wiGPUBVH.cpp */; };
+		1A12A64E2DB4B4400016BF1D /* wiInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F292DB3A85E0016BF1D /* wiInput.cpp */; };
+		1A12A64F2DB4B4400016BF1D /* wiRenderPath2D_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F622DB3A85E0016BF1D /* wiRenderPath2D_BindLua.cpp */; };
+		1A12A6502DB4B4400016BF1D /* wiSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F7A2DB3A85E0016BF1D /* wiSprite.cpp */; };
+		1A12A6512DB4B4400016BF1D /* wiGraphicsDevice_DX12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F192DB3A85E0016BF1D /* wiGraphicsDevice_DX12.cpp */; };
+		1A12A6522DB4B4400016BF1D /* wiBacklog_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EF92DB3A85E0016BF1D /* wiBacklog_BindLua.cpp */; };
+		1A12A6532DB4B4400016BF1D /* wiInput_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F2B2DB3A85E0016BF1D /* wiInput_BindLua.cpp */; };
+		1A12A6542DB4B4400016BF1D /* wiNetwork_Linux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F3F2DB3A85E0016BF1D /* wiNetwork_Linux.cpp */; };
+		1A12A6552DB4B4400016BF1D /* wiRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F592DB3A85E0016BF1D /* wiRenderer.cpp */; };
+		1A12A6562DB4B4400016BF1D /* wiRenderPath3D_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F662DB3A85E0016BF1D /* wiRenderPath3D_BindLua.cpp */; };
+		1A12A6572DB4B4400016BF1D /* wiTexture_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F862DB3A85E0016BF1D /* wiTexture_BindLua.cpp */; };
+		1A12A6582DB4B4400016BF1D /* wiRenderer_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F5B2DB3A85E0016BF1D /* wiRenderer_BindLua.cpp */; };
+		1A12A6592DB4B4400016BF1D /* wiPhysics_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F4A2DB3A85E0016BF1D /* wiPhysics_BindLua.cpp */; };
+		1A12A65A2DB4B4400016BF1D /* wiGPUSortLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F152DB3A85E0016BF1D /* wiGPUSortLib.cpp */; };
+		1A12A65B2DB4B4400016BF1D /* wiScene_Components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F702DB3A85E0016BF1D /* wiScene_Components.cpp */; };
+		1A12A65C2DB4B4400016BF1D /* wiImageParams_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F252DB3A85E0016BF1D /* wiImageParams_BindLua.cpp */; };
+		1A12A65D2DB4B4400016BF1D /* wiVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F942DB3A85E0016BF1D /* wiVideo.cpp */; };
+		1A12A65E2DB4B4400016BF1D /* wiRawInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F562DB3A85E0016BF1D /* wiRawInput.cpp */; };
+		1A12A65F2DB4B4400016BF1D /* wiRenderPath_BindLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F5E2DB3A85E0016BF1D /* wiRenderPath_BindLua.cpp */; };
+		1A12A6602DB4B4400016BF1D /* wiXInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F9A2DB3A85E0016BF1D /* wiXInput.cpp */; };
+		1A12A6612DB4B4400016BF1D /* wiHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F212DB3A85E0016BF1D /* wiHelper.cpp */; };
+		1A12A6622DB4B4400016BF1D /* wiVoxelGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F962DB3A85E0016BF1D /* wiVoxelGrid.cpp */; };
+		1A12A6632DB4B4400016BF1D /* wiRenderPath3D_PathTracing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F682DB3A85E0016BF1D /* wiRenderPath3D_PathTracing.cpp */; };
+		1A12A6642DB4B4400016BF1D /* wiProfiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F522DB3A85E0016BF1D /* wiProfiler.cpp */; };
+		1A12A6652DB4B4400016BF1D /* wiRenderPath3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F642DB3A85E0016BF1D /* wiRenderPath3D.cpp */; };
+		1A12A6662DB4B4400016BF1D /* wiBacklog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129EF72DB3A85E0016BF1D /* wiBacklog.cpp */; };
+		1A12A6672DB4B4400016BF1D /* wiEmittedParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F082DB3A85E0016BF1D /* wiEmittedParticle.cpp */; };
+		1A12A6682DB4B4400016BF1D /* wiHairParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F1F2DB3A85E0016BF1D /* wiHairParticle.cpp */; };
+		1A12A6692DB4B4400016BF1D /* wiScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F6C2DB3A85E0016BF1D /* wiScene.cpp */; };
+		1A12A66A2DB4B4400016BF1D /* wiGraphicsDevice_Vulkan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A129F1B2DB3A85E0016BF1D /* wiGraphicsDevice_Vulkan.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -8054,10 +8125,81 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A129FA02DB3AA230016BF1D /* wiVersion.cpp in Sources */,
+				1A12A6242DB4B3D40016BF1D /* wiAudio_BindLua.cpp in Sources */,
+				1A12A6252DB4B3D40016BF1D /* wiAsync_BindLua.cpp in Sources */,
 				1A129FA52DB3ACFC0016BF1D /* wiArchive.cpp in Sources */,
 				1A12A6232DB42AEE0016BF1D /* wiApplication.cpp in Sources */,
 				1A129FA22DB3ACC20016BF1D /* wiEventHandler.cpp in Sources */,
 				1A129FA42DB3ACF20016BF1D /* wiArguments.cpp in Sources */,
+				1A12A6262DB4B4400016BF1D /* wiImage.cpp in Sources */,
+				1A12A6272DB4B4400016BF1D /* wiPathQuery.cpp in Sources */,
+				1A12A6282DB4B4400016BF1D /* wiApplication_BindLua.cpp in Sources */,
+				1A12A6292DB4B4400016BF1D /* wiNetwork_Windows.cpp in Sources */,
+				1A12A62A2DB4B4400016BF1D /* wiMath.cpp in Sources */,
+				1A12A62B2DB4B4400016BF1D /* wiSpriteAnim_BindLua.cpp in Sources */,
+				1A12A62C2DB4B4400016BF1D /* wiNetwork_BindLua.cpp in Sources */,
+				1A12A62D2DB4B4400016BF1D /* wiOcean.cpp in Sources */,
+				1A12A62E2DB4B4400016BF1D /* wiLua.cpp in Sources */,
+				1A12A62F2DB4B4400016BF1D /* wiTrailRenderer_BindLua.cpp in Sources */,
+				1A12A6302DB4B4400016BF1D /* wiTerrain.cpp in Sources */,
+				1A12A6312DB4B4400016BF1D /* wiSpriteFont_BindLua.cpp in Sources */,
+				1A12A6322DB4B4400016BF1D /* wiFadeManager.cpp in Sources */,
+				1A12A6332DB4B4400016BF1D /* wiShaderCompiler.cpp in Sources */,
+				1A12A6342DB4B4400016BF1D /* wiTextureHelper.cpp in Sources */,
+				1A12A6352DB4B4400016BF1D /* wiRandom.cpp in Sources */,
+				1A12A6362DB4B4400016BF1D /* wiTrailRenderer.cpp in Sources */,
+				1A12A6372DB4B4400016BF1D /* wiVoxelGrid_BindLua.cpp in Sources */,
+				1A12A6382DB4B4400016BF1D /* wiScene_BindLua.cpp in Sources */,
+				1A12A6392DB4B4400016BF1D /* wiPrimitive_BindLua.cpp in Sources */,
+				1A12A63A2DB4B4400016BF1D /* wiLoadingScreen_BindLua.cpp in Sources */,
+				1A12A63B2DB4B4400016BF1D /* wiSDLInput.cpp in Sources */,
+				1A12A63C2DB4B4400016BF1D /* wiFont.cpp in Sources */,
+				1A12A63D2DB4B4400016BF1D /* wiScene_Serializers.cpp in Sources */,
+				1A12A63E2DB4B4400016BF1D /* wiSpriteFont.cpp in Sources */,
+				1A12A63F2DB4B4400016BF1D /* wiSprite_BindLua.cpp in Sources */,
+				1A12A6402DB4B4400016BF1D /* wiJobSystem.cpp in Sources */,
+				1A12A6412DB4B4400016BF1D /* wiResourceManager.cpp in Sources */,
+				1A12A6422DB4B4400016BF1D /* wiPathQuery_BindLua.cpp in Sources */,
+				1A12A6432DB4B4400016BF1D /* wiAudio.cpp in Sources */,
+				1A12A6442DB4B4400016BF1D /* wiGUI.cpp in Sources */,
+				1A12A6452DB4B4400016BF1D /* wiPhysics_Jolt.cpp in Sources */,
+				1A12A6462DB4B4400016BF1D /* wiMath_BindLua.cpp in Sources */,
+				1A12A6472DB4B4400016BF1D /* wiPrimitive.cpp in Sources */,
+				1A12A6482DB4B4400016BF1D /* wiRenderPath2D.cpp in Sources */,
+				1A12A6492DB4B4400016BF1D /* wiLoadingScreen.cpp in Sources */,
+				1A12A64A2DB4B4400016BF1D /* wiFFTGenerator.cpp in Sources */,
+				1A12A64B2DB4B4400016BF1D /* wiLocalization.cpp in Sources */,
+				1A12A64C2DB4B4400016BF1D /* wiInitializer.cpp in Sources */,
+				1A12A64D2DB4B4400016BF1D /* wiGPUBVH.cpp in Sources */,
+				1A12A64E2DB4B4400016BF1D /* wiInput.cpp in Sources */,
+				1A12A64F2DB4B4400016BF1D /* wiRenderPath2D_BindLua.cpp in Sources */,
+				1A12A6502DB4B4400016BF1D /* wiSprite.cpp in Sources */,
+				1A12A6512DB4B4400016BF1D /* wiGraphicsDevice_DX12.cpp in Sources */,
+				1A12A6522DB4B4400016BF1D /* wiBacklog_BindLua.cpp in Sources */,
+				1A12A6532DB4B4400016BF1D /* wiInput_BindLua.cpp in Sources */,
+				1A12A6542DB4B4400016BF1D /* wiNetwork_Linux.cpp in Sources */,
+				1A12A6552DB4B4400016BF1D /* wiRenderer.cpp in Sources */,
+				1A12A6562DB4B4400016BF1D /* wiRenderPath3D_BindLua.cpp in Sources */,
+				1A12A6572DB4B4400016BF1D /* wiTexture_BindLua.cpp in Sources */,
+				1A12A6582DB4B4400016BF1D /* wiRenderer_BindLua.cpp in Sources */,
+				1A12A6592DB4B4400016BF1D /* wiPhysics_BindLua.cpp in Sources */,
+				1A12A65A2DB4B4400016BF1D /* wiGPUSortLib.cpp in Sources */,
+				1A12A65B2DB4B4400016BF1D /* wiScene_Components.cpp in Sources */,
+				1A12A65C2DB4B4400016BF1D /* wiImageParams_BindLua.cpp in Sources */,
+				1A12A65D2DB4B4400016BF1D /* wiVideo.cpp in Sources */,
+				1A12A65E2DB4B4400016BF1D /* wiRawInput.cpp in Sources */,
+				1A12A65F2DB4B4400016BF1D /* wiRenderPath_BindLua.cpp in Sources */,
+				1A12A6602DB4B4400016BF1D /* wiXInput.cpp in Sources */,
+				1A12A6612DB4B4400016BF1D /* wiHelper.cpp in Sources */,
+				1A12A6622DB4B4400016BF1D /* wiVoxelGrid.cpp in Sources */,
+				1A12A6632DB4B4400016BF1D /* wiRenderPath3D_PathTracing.cpp in Sources */,
+				1A12A6642DB4B4400016BF1D /* wiProfiler.cpp in Sources */,
+				1A12A6652DB4B4400016BF1D /* wiRenderPath3D.cpp in Sources */,
+				1A12A6662DB4B4400016BF1D /* wiBacklog.cpp in Sources */,
+				1A12A6672DB4B4400016BF1D /* wiEmittedParticle.cpp in Sources */,
+				1A12A6682DB4B4400016BF1D /* wiHairParticle.cpp in Sources */,
+				1A12A6692DB4B4400016BF1D /* wiScene.cpp in Sources */,
+				1A12A66A2DB4B4400016BF1D /* wiGraphicsDevice_Vulkan.cpp in Sources */,
 				1A129FA12DB3AA510016BF1D /* wiConfig.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
