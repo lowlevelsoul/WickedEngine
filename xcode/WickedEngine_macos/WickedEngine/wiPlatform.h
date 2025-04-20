@@ -46,6 +46,12 @@ typedef void* HMODULE;
 #	include "sdl2.h"
 #endif
 
+//template<typename T>
+inline constexpr uint64_t AlignTo(uint64_t value, uint64_t alignment)
+{
+	return ((value + alignment - uint64_t(1)) / alignment) * alignment;
+}
+
 namespace wi::platform
 {
 #ifdef _WIN32
